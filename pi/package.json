@@ -1,0 +1,16 @@
+{
+  "name": "sailbot-pi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "raspi": "^2.0.0",
+    "raspi-i2c": "^3.0.0",
+    "serialport": "^2.1.0"
+  }
+}
