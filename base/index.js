@@ -8,11 +8,11 @@ var MAIN_SAIL = 1,
 
 var PULSE = {
     STOP: 1500,
-    CLOCKWISE: 1550,
-    COUNTER_CLOCKWISE: 1450
+    CLOCKWISE: 1600,
+    COUNTER_CLOCKWISE: 1400
 };
 
-var rudderPosition = 90;
+var rudderPosition = 1600; // basically the middle
 
 var serialPort = new SerialPort(port, {
     baudrate: baudrate
@@ -34,45 +34,43 @@ serialPort.on('open', function () {
     controller.init();
 
     controller.on('RIGHT_STICK:left', function () {
-        console.log('right stick left');
-        sendMessage(AFT_SAIL, PULSE.COUNTER_CLOCKWISE);
-    });
-
-    controller.on('RIGHT_STICK:right', function () {
-        console.log('right stick right');
-        sendMessage(AFT_SAIL, PULSE.CLOCKWISE);
-    });
-
-    controller.on('RIGHT_STICK:release', function () {
-        console.log('right stick release');
-        sendMessage(AFT_SAIL, PULSE.STOP);
-    });
-
-    controller.on('LEFT_TRIGGER', function () {
-        console.log('left trigger');
-        rudderPosition += 10;
-        sendMessage(RUDDER, rudderPosition);
-    });
-
-    controller.on('RIGHT_TRIGGER', function () {
-        console.log('right trigger');
-        rudderPosition -= 10;
-        sendMessage(RUDDER, rudderPosition);
-    });
-    
-    controller.on('LEFT_STICK:left', function () {
-        console.log('left stick left');
         sendMessage(MAIN_SAIL, PULSE.COUNTER_CLOCKWISE);
     });
 
-    controller.on('LEFT_STICK:right', function () {
-        console.log('left stick right');
+    controller.on('RIGHT_STICK:right', function () {
         sendMessage(MAIN_SAIL, PULSE.CLOCKWISE);
     });
 
-    controller.on('LEFT_STICK:release', function () {
-        console.log('left stick release');
+    controller.on('RIGHT_STICK:release', function () {
         sendMessage(MAIN_SAIL, PULSE.STOP);
+    });
+
+    controller.on('LEFT_TRIGGER', function () {
+        if (rudderPosition < 2200) {
+            rudderPosition += 100;
+            console.log('rudderPosition', rudderPosition);
+            sendMessage(RUDDER, rudderPosition);
+        }
+    });
+
+    controller.on('RIGHT_TRIGGER', function () {
+        if (rudderPosition > 700) {
+            rudderPosition -= 100;
+            console.log('rudderPosition', rudderPosition);
+            sendMessage(RUDDER, rudderPosition);
+        }
+    });
+
+    controller.on('LEFT_STICK:left', function () {
+        sendMessage(AFT_SAIL, PULSE.COUNTER_CLOCKWISE);
+    });
+
+    controller.on('LEFT_STICK:right', function () {
+        sendMessage(AFT_SAIL, PULSE.CLOCKWISE);
+    });
+
+    controller.on('LEFT_STICK:release', function () {
+        sendMessage(AFT_SAIL, PULSE.STOP);
     });
 });
 
