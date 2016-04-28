@@ -3,7 +3,16 @@ var SerialPort = require('serialport').SerialPort,
     baudrate = 57600;
 
 var MAIN_SAIL = 1,
-    AFT_SAIL = 2;
+    AFT_SAIL = 2,
+    RUDDER = 3;
+
+var PULSE = {
+    STOP: 1500,
+    CLOCKWISE: 1550,
+    COUNTER_CLOCKWISE: 1450
+};
+
+var rudderPosition = 90;
 
 var serialPort = new SerialPort(port, {
     baudrate: baudrate
@@ -19,56 +28,52 @@ serialPort.on('open', function () {
         };
         serialPort.write(JSON.stringify(data) + '\n');
     }
-    
+
     var controller = require('./controller');
 
     controller.init();
 
     controller.on('RIGHT_STICK:left', function () {
         console.log('right stick left');
-        sendMessage(AFT_SAIL, 1450);
+        sendMessage(AFT_SAIL, PULSE.COUNTER_CLOCKWISE);
     });
 
     controller.on('RIGHT_STICK:right', function () {
         console.log('right stick right');
-        sendMessage(AFT_SAIL, 1550);
+        sendMessage(AFT_SAIL, PULSE.CLOCKWISE);
     });
 
-    controller.on('RIGHT_STICK:reset', function () {
-        console.log('right stick reset');
-        sendMessage(AFT_SAIL, 1500);
+    controller.on('RIGHT_STICK:release', function () {
+        console.log('right stick release');
+        sendMessage(AFT_SAIL, PULSE.STOP);
     });
 
     controller.on('LEFT_TRIGGER', function () {
         console.log('left trigger');
-        sendMessage(MAIN_SAIL, 1450);
-    });
-
-    controller.on('LEFT_TRIGGER:reset', function () {
-        console.log('left trigger reset');
-        sendMessage(MAIN_SAIL, 1500);
+        rudderPosition += 10;
+        sendMessage(RUDDER, rudderPosition);
     });
 
     controller.on('RIGHT_TRIGGER', function () {
         console.log('right trigger');
-        sendMessage(MAIN_SAIL, 1550);
+        rudderPosition -= 10;
+        sendMessage(RUDDER, rudderPosition);
+    });
+    
+    controller.on('LEFT_STICK:left', function () {
+        console.log('left stick left');
+        sendMessage(MAIN_SAIL, PULSE.COUNTER_CLOCKWISE);
     });
 
-    controller.on('RIGHT_TRIGGER:reset', function () {
-        console.log('right trigger reset');
-        sendMessage(MAIN_SAIL, 1500);
+    controller.on('LEFT_STICK:right', function () {
+        console.log('left stick right');
+        sendMessage(MAIN_SAIL, PULSE.CLOCKWISE);
+    });
+
+    controller.on('LEFT_STICK:release', function () {
+        console.log('left stick release');
+        sendMessage(MAIN_SAIL, PULSE.STOP);
     });
 });
 
-// controller.on('LEFT_STICK:left', function () {
-//     console.log('left stick left');
-// });
-//
-// controller.on('LEFT_STICK:right', function () {
-//     console.log('left stick right');
-// });
-//
-// controller.on('LEFT_STICK:reset', function () {
-//     console.log('left stick reset');
-// });
 

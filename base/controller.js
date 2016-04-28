@@ -10,14 +10,14 @@ var LEFT_STICK = 0,
 var functions = {
     'LEFT_STICK:left': noop,
     'LEFT_STICK:right': noop,
-    'LEFT_STICK:reset': noop,
+    'LEFT_STICK:release': noop,
     'RIGHT_STICK:left': noop,
     'RIGHT_STICK:right': noop,
-    'RIGHT_STICK:reset': noop,
+    'RIGHT_STICK:release': noop,
     'LEFT_TRIGGER': noop,
-    'LEFT_TRIGGER:reset': noop,
+    'LEFT_TRIGGER:release': noop,
     'RIGHT_TRIGGER': noop,
-    'RIGHT_TRIGGER:reset': noop
+    'RIGHT_TRIGGER:release': noop
 };
 
 var values = {
@@ -48,14 +48,14 @@ gamepad.on('move', function (id, axis, value) {
         } else if (value >= 0.5 && previous < 0.5) {
             functions[func + ':right']();
         } else if (value > -0.5 && value < 0.5 && (previous <= -0.5 || previous >= 0.5)) {
-            functions[func + ':reset']();
+            functions[func + ':release']();
         }
     } else if (axis === LEFT_TRIGGER || axis === RIGHT_TRIGGER) {
         var func = axis === LEFT_TRIGGER ? 'LEFT_TRIGGER' : 'RIGHT_TRIGGER';
         if (value >= 0.5 && previous < 0.5) {
             functions[func]();
         } else if (value < 0.5 && previous >= 0.5) {
-            functions[func + ':reset']();
+            functions[func + ':release']();
         }
     } else {
         return;
