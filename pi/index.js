@@ -2,22 +2,22 @@ var raspi = require('raspi');
 var I2C = require('raspi-i2c').I2C;
 var servoDriver = require('./servo-driver');
 var radio = require('./radio');
+
+var MAIN_SAIL = 1,
+    AFT_SAIL = 2,
+    RUDDER = 3;
+
 var servoChannel;
 
 function ready() {
-    servoChannel = 0;
     console.log('Ready');
-    servoDriver.setServoPulse(servoChannel, 1500);
+    servoDriver.setServoPulse(MAIN_SAIL, 1500);
+    servoDriver.setServoPulse(AFT_SAIL, 1500);
 }
 
-function onData(data) {
-    console.log('message received:', data);
-    var number = Number(data);
-    if (number < 20) {
-        servoChannel = data;
-    } else {
-        servoDriver.setServoPulse(servoChannel, number);
-    }
+function onData(message) {
+    var object = JSON.parse(message);
+    servoDriver.setServoPulse(object.channel, object.pulse);
 }
 
 raspi.init(() => {
