@@ -1,0 +1,327 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:uneeddis
+LIBS:pwmcontroller
+LIBS:windvane
+LIBS:anemometer
+LIBS:pwmcontroller2
+LIBS:pwmcontroller2222
+LIBS:PWM222
+LIBS:component
+LIBS:y2
+LIBS:weNeedThis
+LIBS:AlexandrinaComponent
+LIBS:a
+LIBS:shay2
+LIBS:Untitled
+LIBS:RPi_Hat-cache
+LIBS:7
+LIBS:Sailbot-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MCP3008 U4
+U 1 1 57D97244
+P 6800 3200
+F 0 "U4" H 6350 3650 50  0000 C CNN
+F 1 "MCP3008" H 7150 3650 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-16_3.9x9.9mm_Pitch1.27mm" H 6700 3100 50  0001 C CNN
+F 3 "" H 6800 3200 50  0000 C CNN
+	1    6800 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Shay U3
+U 1 1 57EB4408
+P 6500 1850
+F 0 "U3" H 6500 1300 60  0000 C CNN
+F 1 "Component" H 6400 1900 60  0000 C CNN
+F 2 "PWM:WindVane" H 6500 1850 60  0001 C CNN
+F 3 "" H 6500 1850 60  0001 C CNN
+	1    6500 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L PWMController2 U1
+U 1 1 57EB46EB
+P 2950 1950
+F 0 "U1" H 3050 1850 60  0000 C CNN
+F 1 "PWMController2" H 3050 1300 60  0000 C CNN
+F 2 "PWM:WindVane" H 2950 1950 60  0001 C CNN
+F 3 "" H 2950 1950 60  0001 C CNN
+	1    2950 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Anemometer U6
+U 1 1 57F93D30
+P 6900 5000
+F 0 "U6" H 6950 4550 39  0000 C CNN
+F 1 "Anemometer" H 6950 4950 39  0000 C CNN
+F 2 "Wind Vane:WindVane" H 6900 5000 60  0001 C CNN
+F 3 "" H 6900 5000 60  0001 C CNN
+	1    6900 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Anemometer U5
+U 1 1 57F93DD1
+P 6900 4400
+F 0 "U5" H 6950 3950 39  0000 C CNN
+F 1 "Windvane" H 6950 4350 39  0000 C CNN
+F 2 "Wind Vane:WindVane" H 6900 4400 60  0001 C CNN
+F 3 "" H 6900 4400 60  0001 C CNN
+	1    6900 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L RPi_GPIO J1
+U 1 1 581BF25B
+P 4050 1900
+F 0 "J1" H 4400 2150 60  0000 C CNN
+F 1 "RPi_GPIO" H 4900 2150 60  0000 C CNN
+F 2 "Socket_Strips:Socket_Strip_Straight_2x20" H 4050 1900 60  0001 C CNN
+F 3 "" H 4050 1900 60  0000 C CNN
+	1    4050 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 1900 3850 1900
+Wire Wire Line
+	3650 1900 3650 2150
+Wire Wire Line
+	3650 2150 3250 2150
+Wire Wire Line
+	3850 2000 3700 2000
+Wire Wire Line
+	3700 2000 3700 2350
+Wire Wire Line
+	3700 2350 3250 2350
+Wire Wire Line
+	3850 2100 3750 2100
+Wire Wire Line
+	3750 2100 3750 2450
+Wire Wire Line
+	3750 2450 3250 2450
+Wire Wire Line
+	5750 1900 6300 1900
+Wire Wire Line
+	6300 1900 6300 2000
+Wire Wire Line
+	5750 2200 6300 2200
+Wire Wire Line
+	5750 2300 6300 2300
+$Comp
+L GND #PWR01
+U 1 1 5847A151
+P 3250 2250
+F 0 "#PWR01" H 3250 2000 50  0001 C CNN
+F 1 "GND" H 3250 2100 50  0000 C CNN
+F 2 "" H 3250 2250 50  0000 C CNN
+F 3 "" H 3250 2250 50  0000 C CNN
+	1    3250 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 5847A180
+P 6300 2100
+F 0 "#PWR02" H 6300 1850 50  0001 C CNN
+F 1 "GND" H 6300 1950 50  0000 C CNN
+F 2 "" H 6300 2100 50  0000 C CNN
+F 3 "" H 6300 2100 50  0000 C CNN
+	1    6300 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR03
+U 1 1 5847A1AF
+P 6550 4900
+F 0 "#PWR03" H 6550 4650 50  0001 C CNN
+F 1 "GND" H 6550 4750 50  0000 C CNN
+F 2 "" H 6550 4900 50  0000 C CNN
+F 3 "" H 6550 4900 50  0000 C CNN
+	1    6550 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR04
+U 1 1 5847A1DE
+P 6600 5500
+F 0 "#PWR04" H 6600 5250 50  0001 C CNN
+F 1 "GND" H 6600 5350 50  0000 C CNN
+F 2 "" H 6600 5500 50  0000 C CNN
+F 3 "" H 6600 5500 50  0000 C CNN
+	1    6600 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR05
+U 1 1 5881374D
+P 6700 3900
+F 0 "#PWR05" H 6700 3650 50  0001 C CNN
+F 1 "GND" H 6700 3750 50  0000 C CNN
+F 2 "" H 6700 3900 50  0000 C CNN
+F 3 "" H 6700 3900 50  0000 C CNN
+	1    6700 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 1750 6700 2600
+Wire Wire Line
+	2650 1750 6700 1750
+Wire Wire Line
+	3800 1750 3800 1900
+Connection ~ 3800 1900
+Wire Wire Line
+	6900 2600 6900 2300
+Wire Wire Line
+	6900 2300 6700 2300
+Connection ~ 6700 2300
+$Comp
+L GND #PWR06
+U 1 1 5881386F
+P 6900 3900
+F 0 "#PWR06" H 6900 3650 50  0001 C CNN
+F 1 "GND" H 6900 3750 50  0000 C CNN
+F 2 "" H 6900 3900 50  0000 C CNN
+F 3 "" H 6900 3900 50  0000 C CNN
+	1    6900 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5750 2700 5950 2700
+Wire Wire Line
+	5950 2700 5950 2600
+Wire Wire Line
+	5950 2600 7600 2600
+Wire Wire Line
+	7600 2600 7600 3100
+Wire Wire Line
+	7600 3100 7500 3100
+Wire Wire Line
+	3850 3000 3700 3000
+Wire Wire Line
+	3700 3000 3700 4000
+Wire Wire Line
+	3700 4000 5850 4000
+Wire Wire Line
+	5850 4000 5850 4250
+Wire Wire Line
+	5850 4250 7700 4250
+Wire Wire Line
+	7700 4250 7700 3200
+Wire Wire Line
+	7700 3200 7500 3200
+Wire Wire Line
+	5750 3000 5900 3000
+Wire Wire Line
+	5900 3000 5900 4200
+Wire Wire Line
+	5900 4200 7600 4200
+Wire Wire Line
+	7600 4200 7600 3300
+Wire Wire Line
+	7600 3300 7500 3300
+Wire Wire Line
+	3850 3100 3750 3100
+Wire Wire Line
+	3750 3100 3750 3950
+Wire Wire Line
+	3750 3950 6050 3950
+Wire Wire Line
+	6050 3950 6050 4150
+Wire Wire Line
+	6050 4150 7500 4150
+Wire Wire Line
+	7500 4150 7500 3400
+Wire Wire Line
+	6550 4900 6800 4650
+Wire Wire Line
+	6600 5500 6800 5250
+Wire Wire Line
+	6100 3000 6000 3000
+Wire Wire Line
+	6000 3000 6000 5150
+Wire Wire Line
+	6000 5150 6800 5150
+Wire Wire Line
+	6800 4750 2650 4750
+Wire Wire Line
+	2650 4750 2650 1750
+Connection ~ 3800 1750
+Wire Wire Line
+	6100 2900 5950 2900
+Wire Wire Line
+	5950 2900 5950 4550
+Wire Wire Line
+	5950 4550 6800 4550
+$Comp
+L 7.2V U2
+U 1 1 58857223
+P 5700 5000
+F 0 "U2" H 5850 4750 60  0000 C CNN
+F 1 "7.2V" H 5700 5150 60  0000 C CNN
+F 2 "Sailbot Footprints:7.2V" H 5700 5000 60  0001 C CNN
+F 3 "" H 5700 5000 60  0001 C CNN
+	1    5700 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR07
+U 1 1 588572E0
+P 5400 5150
+F 0 "#PWR07" H 5400 4900 50  0001 C CNN
+F 1 "GND" H 5400 5000 50  0000 C CNN
+F 2 "" H 5400 5150 50  0000 C CNN
+F 3 "" H 5400 5150 50  0000 C CNN
+	1    5400 5150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5400 5000 5250 5000
+Wire Wire Line
+	5250 5000 5250 5350
+Wire Wire Line
+	5250 5350 6800 5350
+$EndSCHEMATC
